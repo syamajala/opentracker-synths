@@ -4,7 +4,10 @@
 #include "btype.h"
 
 #include "audio/chip_dsp.h"
+#include "model/synth_patch.h"
 #include "modules/synth_descriptor.h"
+
+#include <cstring>
 
 namespace ot {
 namespace mod {
@@ -83,12 +86,43 @@ const Section kSections[] = {
     OT_SYNTH_SECTION("ENV", "Envelope", kEnv),  OT_SYNTH_SECTION("CHIP", "Chip Tricks", kChip),
     OT_SYNTH_SECTION("CTRL", "Controllers", kCtrl), OT_SYNTH_MACRO_SECTIONS};
 
+// The Init patch's macros (#176): six named knobs on the chip's main
+// controls, unipolar; amount 1.00 = the setting's whole range over the knob
+// (Clock down from 64 kHz to 15.6 kHz).
+void initPatch(SynthPatch& p) {
+    struct M {
+        const char* name;
+        int8_t param[2];
+        float amount[2];
+    };
+    static const M kM[6] = {{"Grit", {kDistortion, -1}, {1.0f, 0.0f}},
+                            {"Clock", {kClock, -1}, {-1.0f, 0.0f}},
+                            {"Decay", {kDecay, kRelease}, {1.0f, 0.6f}},
+                            {"Vibrato", {kVibDepth, kVibRate}, {1.0f, 0.4f}},
+                            {"Arp", {kArpMode, -1}, {1.0f, 0.0f}},
+                            {"Hi-Pass", {kHiPass, kHpFreq}, {1.0f, 1.0f}}};
+    for (int k = 0; k < 6; ++k) {
+        PatchMacro& m = p.macros[k];
+        const size_t l = std::strlen(kM[k].name);
+        std::memcpy(m.name, kM[k].name, l + 1);
+        m.nameLen = uint8_t(l);
+        m.bipolar = false;
+        m.count = 0;
+        for (int j = 0; j < 2 && kM[k].param[j] >= 0; ++j) {
+            m.targets[j].param = kM[k].param[j];
+            std::memcpy(&m.targets[j].amountBits, &kM[k].amount[j], 4);
+            m.count = uint8_t(j + 1);
+        }
+    }
+}
+
 }  // namespace
 
 extern const SynthDescriptor kBtypeDescriptor;
 const SynthDescriptor kBtypeDescriptor = {audio::btype::kEngineId, "BTYPE", 0, int8_t(audio::btype::kVolume),
                                          uint8_t(audio::btype::kParamCount), kParams, kUi, kSections,
-                                         uint8_t(sizeof(kSections) / sizeof(kSections[0])), 2, kExt, "B-Type"};
+                                         uint8_t(sizeof(kSections) / sizeof(kSections[0])), 2, kExt, "B-Type", -1,
+                                         initPatch};
 
 }  // namespace mod
 }  // namespace ot
