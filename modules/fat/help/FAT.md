@@ -27,7 +27,7 @@ The saw stack: how many saws and how far apart, their shape, noise and stereo.
 ### Fatness
 How many detuned saw pairs join the middle one, and how far apart they are.
 
-- 0 is one saw; up to 33 one pair, then two, and three from 67.
+- 0 is one saw; 1 to 33 adds one pair, 34 to 66 two, 67 up three.
 
 ### Brightness
 A gentle low-pass on the stack, before the filter.
