@@ -36,7 +36,15 @@ A module folder holds:
 - `module.toml`: id, version, API major, entry function, sources, tests and declared budgets
   (flash, SRAM, SDRAM, fastrun bytes, CPU instructions per unit);
 - `src/`: the engine and its `*_module.cpp` wrapper;
-- `tests/`: host tests, built and run by the core's `make host-test`.
+- `tests/`: host tests, built and run by the core's `make host-test`;
+- `help/<NAME>.md` (optional): the engine's page, one file per engine (`NAME` = the
+  descriptor's name, e.g. `help/BTYPE.md`), in two parts. First the guide, free Markdown
+  under `# <Engine>` (how it works, recipes, tips) for the docs. Then `# Settings`, the
+  reference the Edit Patch help box shows: `##` sections, `###` settings and
+  `- Choice: text` items named as on screen, one short paragraph under each heading. The
+  card gets the reference only (the core's `make help`). Format: the core's
+  `src/core/modules/synth_help.h`; the core's `make host-test` checks the reference against
+  the descriptor (names, full coverage, line width).
 
 ## Building
 
