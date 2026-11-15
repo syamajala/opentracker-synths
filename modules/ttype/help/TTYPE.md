@@ -216,7 +216,7 @@ The rim shot's level.
 ### Rim Tune
 The rim shot's pitch.
 
-- Low values are deeper; high values higher.
+- Low values are lower; high values higher.
 
 ### Rim Character
 How the rim shot is built: struck resonators.
@@ -233,7 +233,7 @@ The cowbell's level.
 ### Bell Tune
 The cowbell's pitch: two squares, the second about a 5th up.
 
-- Low values are deeper; high values higher.
+- Low values are lower; high values higher.
 
 ### Bell Decay
 How long the cowbell rings.

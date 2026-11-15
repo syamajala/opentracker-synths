@@ -169,7 +169,7 @@ The noise channel: a shift register at a set rate or at the note.
 ### Width
 The shift register's length.
 
-- 15 bit: hiss.
+- 15 bit: a long sequence: plain noise.
 - 7 bit: a short loop of 127 steps: more tonal.
 
 ### Shift
@@ -252,7 +252,7 @@ How long the kick rings.
 ### Snare Width
 The snare's noise.
 
-- 15 bit: hiss.
+- 15 bit: a long sequence: plain noise.
 - 7 bit: a short loop of 127 steps: more tonal.
 
 ### Snare Decay
