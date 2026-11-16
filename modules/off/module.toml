@@ -1,0 +1,19 @@
+# OpenTracker module manifest (core: tools/profile.py): the Off engine, a
+# silent synth with no settings. [I] OpenTracker fork: built into the image
+# (the synths load from the card), so a New Project's synth slots start on
+# it and load nothing until a model is picked.
+id      = "OFF1"
+name    = "Off"
+version = "1.0.0"
+api     = 1
+entry   = "offModule"
+caps    = ["synthEngine"]
+sources = ["off.cpp", "off_module.cpp"]
+
+flash_max_bytes   = 600
+sram_audio_bytes  = 0
+sdram_bytes       = 0
+fastrun_bytes     = 0
+cpu_insn_per_unit = 200               # no sound: a note ends in its first block
+max_units         = 8
+engines           = [241]             # 0xF1: the fork's engine range (model/synth_patch.h)
