@@ -22,6 +22,7 @@ not identical to them.
 | `modules/btype` | BTY1 | B-Type ("B-Type" on screen): a 4-channel 8-bit home computer style voice with polynomial counters: divider-clocked channels (Tuning Free / Coarse / Fine), the buzz distortions, a second channel in divider steps, the high-pass pair trick, a 4-bit ADSR in 1/60 s frames, a small DAC, the CHIP tricks (module engine 0x88, Patches/BTYPE/) |
 | `modules/arc` | ARC1 | Arc-Type ("Arc-Type" on screen): a home-console 4-operator FM style voice: eight algorithms, feedback, per operator MUL / DT / Level / Rate Scaling / a 5-rate envelope with loop modes / AMS, an LFO (PMS, AMS), a 9-bit DAC with a ladder character, an Aux square / noise voice, the CHIP arp and slide (module engine 0x89, Patches/ARCTYPE/) |
 | `modules/dx7` | DX7S | DX7: six-operator FM, the 32 DX7 algorithms, DX7 `.syx` voice banks played as they were made (Patches/DX7/); OpenTracker fork card module, derived from msfa (module engine 0xF0) |
+| `modules/off` | OFF1 | Off: no sound and no settings (one hidden Volume); OpenTracker fork, built into the image so a New Project's synth slots load nothing from the card (module engine 0xF1) |
 
 ## How modules work
 
