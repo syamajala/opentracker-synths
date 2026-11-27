@@ -1,7 +1,7 @@
-# DX7
+# 6-Type
 
 A six-operator FM engine that plays Yamaha DX7 voices (`.syx` files). Loading voices,
-banks and playing are on the [DX7](https://syamajala.github.io/polyend-tracker-re/dev/guide/dx7/)
+banks and playing are on the [6-Type](https://syamajala.github.io/polyend-tracker-re/dev/guide/sixtype/)
 page.
 
 ## How it works
